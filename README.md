@@ -8,4 +8,6 @@ For example:
 
 ![](https://raw.githubusercontent.com/davidhu3141/OpenzFunction/master/Sample/Faked.jpg)
 
+This is the 2-D Taylor's approximation of z = sinx * siny / 2, up to cubic polynomial.
+
 I photoshoped the picture (*the darker part of the model isn't real*) since I only make half of the model. Finishing the whole model would take too much time. 
