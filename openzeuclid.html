@@ -1,0 +1,211 @@
+<html>
+	<head>
+		<title> openzpolar </title>
+		<script type = "text/javascript">
+			
+			var canvas;
+			var context;
+			
+			function f(x, y){
+				return (x * x + y * y) / 4;
+			}
+			
+			function d(x1, y1, x2, y2){
+				return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+			}
+			
+			function cosOBC(o, b, c){
+				return (b * b + c * c - o * o) / (2 * b * c);
+			}
+			
+			var points = new Array(new Array(2), new Array(2), new Array(2), new Array(2));
+			var lines = new Array(17);
+			
+			function initLines(){
+				lines[1] = f(points[0][0], points[0][1]);
+				lines[2] = d(points[0][0], points[0][1], points[1][0], points[1][1]);
+				lines[3] = f(points[1][0], points[1][1]);
+				lines[0] = d(lines[1], lines[2], lines[3], 0);
+				
+				lines[5] = lines[3];
+				lines[6] = d(points[1][0], points[1][1], points[2][0], points[2][1]);
+				lines[7] = f(points[2][0], points[2][1]);
+				lines[4] = d(lines[5], lines[6], lines[7], 0);
+				
+				lines[9] = lines[7];
+				lines[10] = d(points[2][0], points[2][1], points[3][0], points[3][1]);
+				lines[11] = f(points[3][0], points[3][1]);
+				lines[8] = d(lines[9], lines[10], lines[11], 0);
+				
+				lines[13] = lines[11];
+				lines[14] = d(points[3][0], points[3][1], points[0][0], points[0][1]);
+				lines[15] = lines[1];
+				lines[12] = d(lines[13], lines[14], lines[15], 0);
+				
+				lines[16] = d(d(points[0][0], points[0][1], points[2][0], points[2][1]), lines[7], 0, lines[15]);
+			} 
+			
+			var cx = 300;
+			var cy = 200;
+			var ck = 50;
+			
+			function myMoveTo(x, y){
+				context.moveTo(cx + x * ck, cy + y * ck);
+			}
+			
+			function myLineTo(x, y){
+				context.lineTo(cx + x * ck, cy + y * ck);
+			}
+			
+			function draw(){
+				context.lineWidth = 0.5;
+				var direct;
+				var curx;
+				var cury;
+				//---------------- beginPath();
+				//A
+				curx = 0;
+				cury = 0;
+				direct = 0;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[0], cury + Math.sin(direct) * lines[0]);
+				//A
+				curx = curx + Math.cos(direct) * lines[0];
+				cury = cury + Math.sin(direct) * lines[0];
+				direct = direct + Math.PI / 2 - Math.asin((lines[1] - lines[3]) / lines[0]);
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[3], cury + Math.sin(direct) * lines[3]);
+				//A
+				curx = curx + Math.cos(direct) * lines[3];
+				cury = cury + Math.sin(direct) * lines[3];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[2], cury + Math.sin(direct) * lines[2]);
+				//A
+				curx = curx + Math.cos(direct) * lines[2];
+				cury = cury + Math.sin(direct) * lines[2];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[1], cury + Math.sin(direct) * lines[1]);
+				//
+				curx = curx + Math.cos(direct) * lines[1];
+				cury = cury + Math.sin(direct) * lines[1];
+				direct = direct + Math.PI / 2 + Math.asin((lines[1] - lines[3]) / lines[0]);
+				//B
+				curx = curx + Math.cos(direct) * lines[0];
+				cury = cury + Math.sin(direct) * lines[0];
+				direct = direct - Math.PI + Math.acos(cosOBC(lines[16], lines[0], lines[4]));
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[4], cury + Math.sin(direct) * lines[4]);
+				//B
+				curx = curx + Math.cos(direct) * lines[4];
+				cury = cury + Math.sin(direct) * lines[4];
+				direct = direct + Math.PI / 2 - Math.asin((lines[5] - lines[7]) / lines[4]);
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[7], cury + Math.sin(direct) * lines[7]);
+				//B
+				curx = curx + Math.cos(direct) * lines[7];
+				cury = cury + Math.sin(direct) * lines[7];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[6], cury + Math.sin(direct) * lines[6]);
+				//B
+				curx = curx + Math.cos(direct) * lines[6];
+				cury = cury + Math.sin(direct) * lines[6];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[5], cury + Math.sin(direct) * lines[5]);
+				//
+				curx = curx + Math.cos(direct) * lines[5];
+				cury = cury + Math.sin(direct) * lines[5];
+				direct = direct + Math.PI / 2 + Math.asin((lines[5] - lines[7]) / lines[4]);
+				//C
+				curx = curx + Math.cos(direct) * lines[4];
+				cury = cury + Math.sin(direct) * lines[4];
+				direct = direct - Math.PI + Math.acos(cosOBC(lines[0], lines[4], lines[16])) + Math.acos(cosOBC(lines[12], lines[8], lines[16]));
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[8], cury + Math.sin(direct) * lines[8]);
+				//C
+				curx = curx + Math.cos(direct) * lines[8];
+				cury = cury + Math.sin(direct) * lines[8];
+				direct = direct + Math.PI / 2 - Math.asin((lines[9] - lines[11]) / lines[8]);
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[11], cury + Math.sin(direct) * lines[11]);
+				//C
+				curx = curx + Math.cos(direct) * lines[11];
+				cury = cury + Math.sin(direct) * lines[11];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[10], cury + Math.sin(direct) * lines[10]);
+				//C
+				curx = curx + Math.cos(direct) * lines[10];
+				cury = cury + Math.sin(direct) * lines[10];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[9], cury + Math.sin(direct) * lines[9]);
+				//
+				curx = curx + Math.cos(direct) * lines[9];
+				cury = cury + Math.sin(direct) * lines[9];
+				direct = direct + Math.PI / 2 + Math.asin((lines[9] - lines[11]) / lines[8]);
+				//D
+				curx = curx + Math.cos(direct) * lines[8];
+				cury = cury + Math.sin(direct) * lines[8];
+				direct = direct - Math.PI + Math.acos(cosOBC(lines[16], lines[8], lines[12]));
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[12], cury + Math.sin(direct) * lines[12]);
+				//D
+				curx = curx + Math.cos(direct) * lines[12];
+				cury = cury + Math.sin(direct) * lines[12];
+				direct = direct + Math.PI / 2 - Math.asin((lines[13] - lines[15]) / lines[12]);
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[15], cury + Math.sin(direct) * lines[15]);
+				//D
+				curx = curx + Math.cos(direct) * lines[15];
+				cury = cury + Math.sin(direct) * lines[15];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[14], cury + Math.sin(direct) * lines[14]);
+				//D
+				curx = curx + Math.cos(direct) * lines[14];
+				cury = cury + Math.sin(direct) * lines[14];
+				direct = direct + Math.PI / 2;
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[13], cury + Math.sin(direct) * lines[13]);
+				//
+				curx = 0;
+				cury = 0;
+				direct = -Math.acos(cosOBC(lines[4], lines[0], lines[16]));
+				myMoveTo(curx, cury);
+				myLineTo(curx + Math.cos(direct) * lines[16], cury + Math.sin(direct) * lines[16]);
+				//---------------- endPath();
+				context.stroke();
+			}
+			
+			function exec(id){
+				canvas = document.getElementById(id);
+				context = canvas.getContext('2d');
+				var i;
+				var j;
+				for(i = -3; i < 3; i++){
+					for(j = -3; j < 3; j++){
+						points[0][0] = i;
+						points[0][1] = j;
+						points[1][0] = (i + 1);
+						points[1][1] = j;
+						points[2][0] = (i + 1);
+						points[2][1] = (j + 1);
+						points[3][0] = i;
+						points[3][1] = (j + 1);
+						initLines();
+						draw();
+						cy += 220;
+					}
+				}
+			}
+			
+		</script>
+	</head>
+	<body onload = "exec('c1')">
+		<canvas id = "c1" width = "1000" height = "8800" />
+	</body>
+</html>
