@@ -11,6 +11,8 @@ Site (in progress)
 This page for example, generates net for surface z = ( x^2 + y^2 ) / 4 now.
 http://davidhu3141.github.io/OpenzFunction/openzeuclid.html
 
+UI will be made soon.
+
 Example
 -------
 
