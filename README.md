@@ -5,6 +5,8 @@ Drawing net for polyhedrons / surfaces expressed by z = f(x, y)
 
 So that you can make real 3D model for some mathematical 2D surface.
 
+![illustration](https://i.imgur.com/XnkHQ4n.jpg)
+
 Site (in progress)
 ------------------
 
