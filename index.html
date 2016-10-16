@@ -38,7 +38,9 @@
 			expression.replace(/x/g, x);
 			expression.replace(/y/g, y);
 			console.log(expression);
-			return eval(expression);
+			var value = eval(expression);
+			value = value > 0 ? value : 0;
+			return value;
 		}
 		
 		var cx = 300;
@@ -169,6 +171,9 @@ Y ranges from <input style="width:50px;" id="ylb"> to <input style="width:50px;"
 </p>
 <p>
 <button type="button" id="net">Generate Net</button>
+</p>
+<p>
+Use <code>Ctrl+V</code> to print result directly.
 </p>
 
 			</div>
