@@ -14,7 +14,7 @@ var geo = {
 	// 'line' is incorrect, it should be 'line_length'
 	lines : new Array(17),
 			
-	initLines : function(){
+	initLines : function(f){
 		geo.lines[1] = f(geo.points[0][0], geo.points[0][1]);
 		geo.lines[2] = geo.d(geo.points[0][0], geo.points[0][1], geo.points[1][0], geo.points[1][1]);
 		geo.lines[3] = f(geo.points[1][0], geo.points[1][1]);

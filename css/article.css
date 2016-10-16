@@ -1,0 +1,137 @@
+
+.article {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/*.article a:link {
+  color: #5d5d5d;
+}*/
+
+.article #comments {
+  background: #ebebeb;
+}
+
+
+.article b, strong {
+  font-weight: 650;
+}
+
+.article h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  margin: 1.5em 0;
+  text-align: start;
+}
+
+.article em {
+  font-weight: 300;
+  /* font-style: normal; */
+}
+
+.article h1 {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.article h2 {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.article h3 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.article h4 {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.article hr {
+  background-color: #ffffff;
+  border-style: solid;
+
+  border-left-color: #ffffff;
+  border-right-color: #ffffff;
+  border-top-color: #ffffff;
+
+  border-bottom-color: #dddddd;
+  border-bottom-width: 1px;
+}
+
+.article p, dl, li, blockquote, pre, code {
+  margin: 1.5em 0;
+  text-align: start;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.article blockquote {
+  margin-left: 40px;
+
+  border-style: solid;
+  border-width: 0px;
+  border-left-width: 10px;
+  border-left-color: #dfdfdf;
+
+  background-color: #f2f2f2;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 15px 20px;
+
+}
+
+.article blockquote p {
+    margin: 0px 0px;
+}
+
+.article dt, dd {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.article dt {
+  font-weight: bold;
+}
+
+.article .footnote {
+  vertical-align: super;
+  font-size: small;
+}
+
+
+.article pre {
+  white-space: pre;
+
+  background-color: #f2f2f2;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 15px 20px;
+}
+
+
+.article code {
+  font-family: "Courier New", monospace;
+  font-weight: 600;
+
+  background-color: #dddddd;
+  border-radius: 5px;
+
+  font-size: 14px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  word-wrap: break-word;
+}
+
+.article img {
+  margin-left: 50px;
+  max-width: 700px;
+}
+
+.toc ul li {
+  list-style-type: none;
+  line-height: 1.4;
+  margin: 0px;
+}
