@@ -19,4 +19,4 @@ Example
 
 This surface is a defined by a cubic polynomial z = x^3/6 + ... + y^3/6.
 
-I photoshoped the picture (*the darker part of the model isn't real*) since I only make half of the model. Finishing the whole model would take too much time. 
+I photoshoped the picture (*the darker part of the model isn't real*) since I only made half of the model. Finishing the whole model would take too much time. 
