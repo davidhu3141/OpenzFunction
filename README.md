@@ -1,9 +1,9 @@
 OpenzFunction
 =============
 
-Drawing net for polyhedrons / surfaces expressed by ![zfxy](https://i.imgur.com/9vaUV6u.gif)
+Draw the nets for polyhedrons / surfaces expressed by ![zfxy](https://i.imgur.com/9vaUV6u.gif)
 
-So that you can make real 3D model for some mathematical 2D surface.
+So that you can make real 3D model for some mathematical surface.
 
 ![illustration](https://i.imgur.com/XnkHQ4n.jpg)
 
