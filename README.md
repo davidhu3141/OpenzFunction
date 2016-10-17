@@ -35,3 +35,5 @@ Todo
 - Reset button
 
 - CSS adjustment.
+
+- Scale factor
