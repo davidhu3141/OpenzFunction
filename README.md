@@ -28,14 +28,14 @@ I photoshoped the picture (*the darker part of the model isn't real*) since I on
 Todo
 ----
 
-- Remove `eval()`
+- [ ] Remove `eval()`
 
-- Implement preview by Three.js.
+- [ ] Implement preview by Three.js.
 
-- Reset button
+- [x] Reset button
 
-- CSS adjustment.
+- [ ] CSS adjustment.
 
-- Scale factor
+- [ ] refacetor (maybe)
 
-- refacetor (maybe)
+- [ ] Scale factor
