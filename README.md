@@ -37,3 +37,5 @@ Todo
 - CSS adjustment.
 
 - Scale factor
+
+- refacetor (maybe)

@@ -112,6 +112,10 @@ console.log(yd);
 				exec();
 			});
 
+			$("#clr").click(function(){
+				$(".datavis").html("");
+			});
+
 		});
 		
 	</script>
@@ -173,6 +177,9 @@ Y ranges from <input style="width:50px;" id="ylb"> to <input style="width:50px;"
 <button type="button" id="net">Generate Net</button>
 </p>
 <p>
+<button type="button" id="clr">Clear Results</button>
+</p>
+<p>
 Use <code>Ctrl+V</code> to print result directly.
 </p>
 
@@ -186,7 +193,7 @@ Use <code>Ctrl+V</code> to print result directly.
 	</div>
 
 	<div class="footer">
-	
+		<p> <em> Any suggestion is welcome! Please mail: davidhu8888@livemail.tw</em> </p>
 	</div>
 
 </div>
