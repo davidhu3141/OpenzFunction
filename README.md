@@ -36,6 +36,8 @@ Todo
 
 - [ ] CSS adjustment.
 
-- [ ] refacetor (maybe)
+- [ ] Refactor (maybe)
 
 - [ ] Scale factor
+
+- [ ] Number the generated graphs

@@ -15,27 +15,32 @@ var geo = {
 	lines : new Array(17),
 			
 	initLines : function(f){
-		geo.lines[1] = f(geo.points[0][0], geo.points[0][1]);
-		geo.lines[2] = geo.d(geo.points[0][0], geo.points[0][1], geo.points[1][0], geo.points[1][1]);
-		geo.lines[3] = f(geo.points[1][0], geo.points[1][1]);
+		geo.lines[1] = f[ geo.points[0][0] ][ geo.points[0][1 ]];
+		// geo.lines[2] = geo.d(geo.points[0][0], geo.points[0][1], geo.points[1][0], geo.points[1][1]);
+		geo.lines[2] = geo.dx;
+		geo.lines[3] = f[ geo.points[1][0] ][ geo.points[1][1] ];
 		geo.lines[0] = geo.d(geo.lines[1], geo.lines[2], geo.lines[3], 0);
-				
+
 		geo.lines[5] = geo.lines[3];
-		geo.lines[6] = geo.d(geo.points[1][0], geo.points[1][1], geo.points[2][0], geo.points[2][1]);
-		geo.lines[7] = f(geo.points[2][0], geo.points[2][1]);
+		// geo.lines[6] = geo.d(geo.points[1][0], geo.points[1][1], geo.points[2][0], geo.points[2][1]);
+		geo.lines[6] = geo.dy;
+		geo.lines[7] = f[ geo.points[2][0] ][ geo.points[2][1] ];
 		geo.lines[4] = geo.d(geo.lines[5], geo.lines[6], geo.lines[7], 0);
-				
+		
 		geo.lines[9] = geo.lines[7];
-		geo.lines[10] = geo.d(geo.points[2][0], geo.points[2][1], geo.points[3][0], geo.points[3][1]);
-		geo.lines[11] = f(geo.points[3][0], geo.points[3][1]);
+		// geo.lines[10] = geo.d(geo.points[2][0], geo.points[2][1], geo.points[3][0], geo.points[3][1]);
+		geo.lines[10] = geo.dx;
+		geo.lines[11] = f[ geo.points[3][0] ][ geo.points[3][1] ];
 		geo.lines[8] = geo.d(geo.lines[9], geo.lines[10], geo.lines[11], 0);
 				
 		geo.lines[13] = geo.lines[11];
-		geo.lines[14] = geo.d(geo.points[3][0], geo.points[3][1], geo.points[0][0], geo.points[0][1]);
+		// geo.lines[14] = geo.d(geo.points[3][0], geo.points[3][1], geo.points[0][0], geo.points[0][1]);
+		geo.lines[14] = geo.dy;
 		geo.lines[15] = geo.lines[1];
 		geo.lines[12] = geo.d(geo.lines[13], geo.lines[14], geo.lines[15], 0);
 				
-		geo.lines[16] = geo.d(geo.d(geo.points[0][0], geo.points[0][1], geo.points[2][0], geo.points[2][1]), geo.lines[7], 0, geo.lines[15]);
+		// geo.lines[16] = geo.d(geo.d(geo.points[0][0], geo.points[0][1], geo.points[2][0], geo.points[2][1]), geo.lines[7], 0, geo.lines[15]);
+		geo.lines[16] = geo.d(0, geo.lines[15], geo.d(geo.dx, geo.dy, 0, 0), geo.lines[7]);
 	},
 
 	lastXY : {},

@@ -14,7 +14,7 @@
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-	<!-- highloghtjs -->
+	<!-- highlightjs -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
@@ -26,6 +26,11 @@
 
 	<!-- d3 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+	<!-- math.js -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.6.0/math.min.js"></script>
+	
+	<!-- calcutatings -->
 	<script src="geo.js"></script>
 
 	<script type = "text/javascript">
@@ -33,7 +38,8 @@
 		var canvas;
 		var context;
 		
-		function f(x, y){
+		// depricated f
+		/* function f(x, y){
 			var expression = $("#func").val();
 			expression.replace(/x/g, x);
 			expression.replace(/y/g, y);
@@ -41,11 +47,11 @@
 			var value = eval(expression);
 			value = value > 0 ? value : 0;
 			return value;
-		}
+		} */
 		
 		var cx = 300;
 		var cy = 200;
-		var ck = 50;
+		var ck = 30;
 		
 		function exec(){
 
@@ -67,39 +73,67 @@
 			}
 			var yd = (yub-ylb)/ys;
 
-console.log(xd);
-console.log(yd);
 
-			for(var i=xlb; i<xub; i+=xd){
-				for(var j=ylb; j<yub; j+=yd){
+			var originExpression = $("#func").val();
+			var code;
+			
+			try {
+				code = math.compile(originExpression);
+			} catch (err) {
+				alert(err.message);
+			}
+
+			// eval
+			var f = [];
+			var i=0;
+			for(var x=xlb; x<=xub; x+=xd){
+				f[i] = [];
+				var j=0;
+				for(var y=ylb; y<=yub; y+=yd){
+					var scope = {};
+					scope.x = x;
+					scope.y = y;
+					f[i][j] = Math.max(code.eval(scope), 0);
+					j++;
+				}
+				i++;
+			}
+
+			// draw
+			for(var i=0; i<xs; i++){
+				for(var j=0; j<ys; j++){
 
 					geo.points[0][0] = i;
 					geo.points[0][1] = j;
-					geo.points[1][0] = (i + xd);
+					geo.points[1][0] = i + 1;
 					geo.points[1][1] = j;
-					geo.points[2][0] = (i + xd);
-					geo.points[2][1] = (j + yd);
+					geo.points[2][0] = i + 1;
+					geo.points[2][1] = j + 1;
 					geo.points[3][0] = i;
-					geo.points[3][1] = (j + yd);
+					geo.points[3][1] = j + 1;
+
+					geo.dx = xd;
+					geo.dy = yd;
 
 					geo.initLines(f);
 					segments = geo.drawVirtual();
 					
+					var ckp = ck / Math.min(xd, yd);
 					d3.select(".datavis")
 						.append("svg")
-						.attr("width", ck*(segments.maxx-segments.minx))
-						.attr("height", ck*(segments.maxy-segments.miny))
+						.attr("width", ckp*(segments.maxx-segments.minx))
+						.attr("height", ckp*(segments.maxy-segments.miny))
 						.style("margin", "5px 5px 5px 5px")
 						.append("g")
-						.attr("id", "net"+Math.floor(i*100)+"_"+Math.floor(j*100))
-						.selectAll("#net"+Math.floor(i*100)+"_"+Math.floor(j*100))
+						.attr("id", "net"+i+"_"+j)
+						.selectAll("#net"+i+"_"+j)
 						.data(segments)
 						.enter()
 						.append("line")
-						.attr("x1", function(d){ return ck*(d.x1-segments.minx) })
-						.attr("y1", function(d){ return ck*(d.y1-segments.miny) })
-						.attr("x2", function(d){ return ck*(d.x2-segments.minx) })
-						.attr("y2", function(d){ return ck*(d.y2-segments.miny) })
+						.attr("x1", function(d){ return ckp*(d.x1-segments.minx) })
+						.attr("y1", function(d){ return ckp*(d.y1-segments.miny) })
+						.attr("x2", function(d){ return ckp*(d.x2-segments.minx) })
+						.attr("y2", function(d){ return ckp*(d.y2-segments.miny) })
 						.style("stroke-width", 1)
 						.style("stroke", "rgb(0, 0, 0)");
 				}
@@ -137,7 +171,7 @@ console.log(yd);
 
 <p>To make model of some z-simple solid that is bound above by a surface <script type="math/tex" id="MathJax-Element-5">z=f(x,y)</script> and below by the x-y plane, we can divide the target into pieces and approximate the pieces by polyhedron.</p>
 
-<p><img src="https://i.imgur.com/XnkHQ4n.jpg" alt="" title=""></p>
+<p><img src="https://i.imgur.com/XnkHQ4n.jpg" alt="" title="" style="width:100%; margin-left:0px;"></p>
 
 <p>This page plots the net of such polyhedron of a specified surface so that you could make the model. </p>
 
@@ -149,11 +183,7 @@ console.log(yd);
 <p>The function <script type="math/tex" id="MathJax-Element-23">z=f(x,y)=</script> <input style="width:25%;" id="func"> . </p>
 
 <blockquote>
-<p><em>Notice: The program recognize your function by javascript</em> <code>eval()</code> <em>, so it's better to write power as</em> <code>Math.pow(2, x)</code> <em>rather than</em> <code>2^x</code> <em>.</em> </p>
-
-<p><em>Hence the functions</em> <code>Math.sin()</code> , <code>Math.cos()</code> <em>…etc are all available.</em></p>
-
-<p><em>Don’t use</em> <code>eval()</code> <em>to do evil things, and don’t enter sensitive data, too.</em></p>
+<p><em>Notice: The program does not recognize </em><code>^</code><em> as mathematical power. Please use </em><code>pow(2,x)</code><em>rather than</em><code>2^x</code><em>.</em> </p>
 </blockquote>
 
 
