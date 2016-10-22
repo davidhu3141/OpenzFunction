@@ -7,7 +7,7 @@ So that you can make real 3D model for some mathematical surface.
 
 ![illustration](https://i.imgur.com/XnkHQ4n.jpg)
 
-Site (in progress)
+Site
 ------------------
 
 http://davidhu3141.github.io/OpenzFunction/index.html
