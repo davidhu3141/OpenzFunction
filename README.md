@@ -34,10 +34,10 @@ Todo
 
 - [x] Reset button
 
-- [ ] CSS adjustment.
+- [x] CSS adjustment.
 
-- [ ] Refactor (maybe)
+- [X] ~~Refactor (maybe)~~
 
 - [x] Scale factor
 
-- [ ] Number the generated graphs
+- [x] Number the generated graphs
