@@ -28,7 +28,7 @@ I photoshoped the picture (*the darker part of the model isn't real*) since I on
 Todo
 ----
 
-- [ ] Remove `eval()`
+- [x] Remove `eval()`
 
 - [ ] Implement preview by Three.js.
 
@@ -38,6 +38,6 @@ Todo
 
 - [ ] Refactor (maybe)
 
-- [ ] Scale factor
+- [x] Scale factor
 
 - [ ] Number the generated graphs

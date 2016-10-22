@@ -118,7 +118,7 @@
 					geo.initLines(f);
 					segments = geo.drawVirtual();
 					
-					var ckp = ck / Math.min(xd, yd);
+					var ckp = ck / Math.min(xd, yd) * parseFloat($("#sf").val());
 					d3.select(".datavis")
 						.append("svg")
 						.attr("width", ckp*(segments.maxx-segments.minx))
@@ -194,8 +194,11 @@
 Y ranges from <input style="width:50px;" id="ylb"> to <input style="width:50px;" id="yub">.</p>
 
 <!-- FORM -->
-<p><input style="width:50px;" id="xs"> slices in X direction. <br>
-<input style="width:50px;" id="ys"> slices in Y direction.</p>
+<p>How many slices in X direction: <input style="width:50px;" id="xs"> <br>
+How many slices in Y direction: <input style="width:50px;" id="ys"> </p>
+
+<!-- FORM -->
+<p>Scale factor: <input style="width:50px;" id="sf" value="1"> </p>
 
 <h3 id="preview">Preview</h3>
 
