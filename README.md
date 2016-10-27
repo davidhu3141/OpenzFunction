@@ -25,12 +25,12 @@ This surface is a defined by a quartic polynomial
 
 I photoshoped the picture (*the darker part of the model isn't real*) since I only made half of the model. Finishing the whole model would take too much time. 
 
-Todo
+TODO
 ----
 
 - [x] Remove `eval()`
 
-- [ ] Implement preview by Three.js.
+- [x] Implement preview by Three.js.
 
 - [x] Reset button
 
@@ -41,3 +41,13 @@ Todo
 - [x] Scale factor
 
 - [x] Number the generated graphs
+
+Used Packages
+-------------
+
+- jQuery
+- highlight.js
+- math.js
+- Three.js
+- D3.js
+- MathJax
