@@ -84,4 +84,8 @@ body {
 	body {
 		background-color: #ffffff;
 	}
+
+	.notprint {
+		display: none;
+	}
 }
