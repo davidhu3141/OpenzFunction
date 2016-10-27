@@ -55,8 +55,8 @@
 		
 		function exec(){
 
-			var xlb = parseInt($("#xlb").val());
-			var xub = parseInt($("#xub").val());
+			var xlb = parseFloat($("#xlb").val());
+			var xub = parseFloat($("#xub").val());
 			var xs = parseInt($("#xs").val());
 			if(xs <= 0){
 				alert("Invalid X-slice number");
@@ -64,8 +64,8 @@
 			}
 			var xd = (xub-xlb)/xs;
 
-			var ylb = parseInt($("#ylb").val());
-			var yub = parseInt($("#yub").val());
+			var ylb = parseFloat($("#ylb").val());
+			var yub = parseFloat($("#yub").val());
 			var ys = parseInt($("#ys").val());
 			if(ys <= 0){
 				alert("Invalid Y-slice number");
